@@ -10,9 +10,9 @@ function App() {
   useEffect(() => {
     api.get('repositories').then(response => {
       setRepositories(response.data);
-
     });
   }, []);
+  
   async function handleAddRepository() {
    const response = await api.post('repositories', {
       title: "title one 1",
@@ -24,7 +24,6 @@ function App() {
   }
 
   async function handleRemoveRepository(id) {
-
     api.delete(`repositories/${id}`).then((response) => {
       const repositoryIndex = repositories.findIndex(repository => repository.id === id);
       repositories.splice(repositoryIndex, 1);
@@ -42,7 +41,7 @@ function App() {
               <button key={repository.id} onClick={() => handleRemoveRepository(repository.id)}>
                 Remover
               </button>
-          </li>
+            </li>
           )
         }
       </ul>
